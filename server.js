@@ -2,6 +2,9 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+// Seting the port that heroku creates - does not exist on local machine.
+const port = process.env.port || 3000;
+
 // Enabling partials in our handlebar views.
 hbs.registerPartials(__dirname + '/views/partials');
 
@@ -61,8 +64,8 @@ app.get('/bad', (req, res) => {
 });
 
 // Putting our app servers to work.
-app.listen(3000, () => {
-    console.log('Listening on port 3000.');
+app.listen(port, () => {
+    console.log(`Listening on port ${port}...`);
 });
 
 // Example of returning plain html to the user (text/html)
